@@ -62,14 +62,15 @@ with left_col:
     )
 
     # Create a QRCode object with customizable parameters
-    qr = qrcode.QRCode(
-        version=1,
-        error_correction=qrcode.constants.ERROR_CORRECT_H,
-        box_size=10,
-        border=4,
-    )
+    qr = None  # Initialize qr variable to avoid reference before assignment
 
     if data:
+        qr = qrcode.QRCode(  # Move QRCode creation inside the if block
+            version=1,
+            error_correction=qrcode.constants.ERROR_CORRECT_H,
+            box_size=10,
+            border=4,
+        )
         qr.add_data(data)
         qr.make(fit=True)
 
@@ -94,7 +95,7 @@ with left_col:
 
 # Right column - QR Code display and download
 with right_col:
-    if data and fill_color and back_color:
+    if qr and fill_color and back_color:  # Check if qr is initialized
         try:
             # Create the QR code image
             img = qr.make_image(fill_color=fill_color, back_color=back_color)
@@ -105,7 +106,7 @@ with right_col:
             buffer.seek(0)
             
             # Display the generated QR code image
-            st.image(buffer, caption="Generated QR Code", use_column_width=True)
+            st.image(buffer, caption="Generated QR Code", use_container_width=True)
             
             # Add download button
             st.download_button(
@@ -124,5 +125,4 @@ with right_col:
             st.error(f"Invalid color value: {e}")
     elif data:
         st.warning("Please enter both colors")
-    else:
-        st.warning("Please enter data for the QR code")
+    

@@ -1,8 +1,8 @@
 import streamlit as st
 
-from forms.contact import contact_form
+from contact import contact_form
 
-@st.experimental_dialog("Contact Me")
+@st.dialog("Contact Me")
 def show_contact_form():
     contact_form()
 

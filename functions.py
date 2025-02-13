@@ -28,8 +28,10 @@ def show_tasks():
 
 
 def write_completed_tasks(tasks):  # Ensure 'tasks' is a list
+    existing_tasks = read_completed_tasks()  # Read existing completed tasks
+    existing_tasks.extend(tasks)  # Add new tasks to the existing list
     with open(NEW_FIlEPATH, 'w') as file:
-        file.write('\n'.join(tasks) + '\n')  # Write each task on a new line
+        file.write('\n'.join(existing_tasks) + '\n')  # Write all completed tasks
 
 def read_completed_tasks():
     if NEW_FIlEPATH.exists():  # Added check for file existence

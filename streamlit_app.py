@@ -3,18 +3,19 @@ import streamlit as st
 
 # --- PAGE SETUP ---
 about_page = st.Page(
-    "views/about_me.py",
+    "about_me.py",
     title="About Me",
     icon=":material/account_circle:",
     default=True,
 )
 project_1_page = st.Page(
-    "To_DO_APP/app.py",
+    "todo.py",
     title="TO DO APP",
-    icon="👨‍🏭",)
+    icon="👨‍🏭",
+)
 
 project_2_page = st.Page(
-    "QRODE_WEB/qr_code_generator.py",
+    "qr_code_generator.py",
     title="QR Code Generator",
     icon=":material/smart_toy:",
 )
@@ -33,7 +34,7 @@ pg = st.navigation(
 
 
 # --- SHARED ON ALL PAGES ---
-st.logo("assets/codingisfun_logo.png")
+
 
 
 # --- RUN NAVIGATION ---
